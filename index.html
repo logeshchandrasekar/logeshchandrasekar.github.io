@@ -338,6 +338,14 @@
         border-color: var(--silver);
       }
       .btn-secondary:hover { background: var(--color-bg-alt); transform: translateY(-1px); }
+      .btn-outline {
+        background: transparent;
+        border-color: var(--silver);
+        color: var(--color-text);
+        gap: 6px;
+      }
+      .btn-outline:hover { background: var(--color-surface-hi); transform: translateY(-1px); border-color: #888; }
+      .btn-outline svg { flex-shrink: 0; }
 
       /* ─── About ──────────────────────────────────────────────── */
       .about-body { width: 100%; }
@@ -813,6 +821,15 @@
               <div class="hero-actions">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
                 <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                <a href="https://raw.githubusercontent.com/logeshchandrasekar/logeshchandrasekar.github.io/99bae496684fafa734e06b15d1011be6c689154a/Logesh%20Resume.pdf"
+                  download="Logesh_Resume.pdf"
+                  class="btn btn-outline">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Download Resume</a>
               </div>
             </div>
 
