@@ -52,7 +52,7 @@
 
       /* ─── Base ───────────────────────────────────────────────── */
       *, *::before, *::after { box-sizing: border-box; }
-      html, body { margin: 0; padding: 0; }
+      html, body { margin: 0; padding: 0; overflow-x: hidden; }
       body {
         font-family: var(--font-sans);
         background-color: var(--color-bg);
@@ -69,6 +69,7 @@
         max-width: 1140px;
         margin: 0 auto;
         padding: 0 var(--space-6);
+        width: 100%;
       }
 
       /* Silver-lined section card */
@@ -314,7 +315,6 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-width: 140px;
         padding: 10px 20px;
         border-radius: 999px;
         border: 1px solid #111;
@@ -656,10 +656,10 @@
       .contact-channel-value {
         font-size: var(--text-sm);
         font-weight: 600;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        overflow-wrap: break-word;
+        word-break: break-all;
       }
+
       .contact-channel-arrow {
         color: var(--color-text-soft);
         flex-shrink: 0;
@@ -739,43 +739,69 @@
       }
       .footer-copy { margin: 0; }
 
-      /* ─── Responsive ─────────────────────────────────────────── */
-      @media (max-width: 900px) {
-        .hero .section-inner-card,
-        .two-column { grid-template-columns: 1fr; }
-        .about-grid { grid-template-columns: 1fr; }
-        .hero-meta { align-items: flex-start; }
-        .contact-layout { grid-template-columns: 1fr; }
-        .form-row { grid-template-columns: 1fr; }
-        .skills-row { grid-template-columns: 1fr; }
-        .skills-label { border-right: none; border-bottom: 1px solid var(--silver); }
-        .section-inner-card { padding: var(--space-5); }
-      }
-      @media (max-width: 800px) {
-        .nav-toggle { display: inline-flex; }
-        .nav-list {
-          position: absolute;
-          inset-inline: 0; top: 100%;
-          background: rgba(210,227,242,0.98);
-          border-bottom: 1px solid var(--silver);
-          flex-direction: column;
-          align-items: flex-start;
-          padding: var(--space-3) var(--space-5) var(--space-4);
-          gap: var(--space-3);
-          transform-origin: top;
-          transform: scaleY(0.9);
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity var(--transition-med), transform var(--transition-med);
-        }
-        .nav-list.is-open { opacity: 1; pointer-events: auto; transform: scaleY(1); }
-        .container { padding-inline: var(--space-4); max-width: 100%; }
-      }
-      @media (max-width: 480px) {
-        .hero-text h1 { font-size: 2rem; }
-        .section { padding: var(--space-7) 0; }
-        .footer-inner { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
-      }
+      /* ─── Responsive ─────────────────────────────────────── */
+
+/* Medium: tablet landscape */
+@media (max-width: 1100px) {
+  .container { padding-inline: var(--space-5); }
+  .section-inner-card { padding: var(--space-6); }
+}
+
+/* Medium: tablet portrait */
+@media (max-width: 900px) {
+  .hero .section-inner-card,
+  .two-column { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr 1fr; }
+  .hero-meta { align-items: flex-start; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .skills-row { grid-template-columns: 1fr; }
+  .skills-label { border-right: none; border-bottom: 1px solid var(--silver); }
+  .section-inner-card { padding: var(--space-5); }
+  .education-two-col .education-header { min-height: unset; }
+}
+
+/* Mobile nav */
+@media (max-width: 800px) {
+  .nav-toggle { display: inline-flex; }
+  .nav-list {
+    position: absolute;
+    inset-inline: 0; top: 100%;
+    background: rgba(210,227,242,0.98);
+    border-bottom: 1px solid var(--silver);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-3) var(--space-5) var(--space-4);
+    gap: var(--space-3);
+    transform-origin: top;
+    transform: scaleY(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-med), transform var(--transition-med);
+  }
+  .nav-list.is-open { opacity: 1; pointer-events: auto; transform: scaleY(1); }
+  .container { padding-inline: var(--space-4); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { text-align: center; justify-content: center; }
+  .contact-channel { padding: var(--space-3); gap: var(--space-3); }
+  .contact-form-wrap { padding: var(--space-4); }
+  .contact-form-footer { flex-direction: column; align-items: stretch; }
+  .contact-form-footer .btn { text-align: center; justify-content: center; }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .hero-text h1 { font-size: 1.8rem; }
+  .section { padding: var(--space-6) 0; }
+  .section-inner-card { padding: var(--space-4); border-radius: var(--radius-lg); }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+}
     </style>
   </head>
   <body>
@@ -1254,7 +1280,7 @@
     <!-- Footer -->
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p class="footer-copy">&copy; <span id="year"></span> Logesh Chandrasekar — Full Stack Developer.</p>
+        <p class="footer-copy">&copy; <span id="year"></span> Logesh Chandrasekar — Full Stack Developer. All rights reserved.<br> - With ❤️ & caffeine.</p>
       </div>
     </footer>
 
