@@ -1271,7 +1271,7 @@
               </div>
 
               <!-- Right: form -->
-              <div class="contact-form-wrap">
+              <form class="contact-form-wrap" id="contact-form" novalidate>
                 <p style="margin:0 0 var(--space-2);font-weight:700;font-size:var(--text-md)">Send a Message</p>
                 <p style="margin:0 0 var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted)">Fill in the form and I'll get back to you soon.</p>
 
@@ -1297,7 +1297,7 @@
                   <span class="contact-form-note">I respond within 24 hours.</span>
                   <button type="submit" class="btn btn-primary">Send Message</button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -1344,6 +1344,63 @@
       // Footer year
       const yr = document.getElementById('year');
       if (yr) yr.textContent = new Date().getFullYear();
+
+      // Contact form submission via Formspree
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+    const btn = contactForm.querySelector('button[type="submit"]');
+    const note = contactForm.querySelector('.contact-form-note');
+    const originalBtnText = btn.textContent;
+    const originalNote = note.textContent;
+
+    // Basic validation
+    const name = contactForm.querySelector('#name').value.trim();
+    const email = contactForm.querySelector('#email').value.trim();
+    const message = contactForm.querySelector('#message').value.trim();
+    if (!name || !email || !message) {
+      note.textContent = '⚠ Please fill in name, email and message.';
+      note.style.color = '#c0392b';
+      return;
+    }
+
+    // Loading state
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    note.textContent = '';
+    note.style.color = '';
+
+    try {
+      const res = await fetch('https://formspree.io/f/mdaqzgpz', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(contactForm),
+      });
+
+      if (res.ok) {
+        btn.textContent = '✓ Sent!';
+        note.textContent = 'Thanks! I\'ll get back to you soon.';
+        note.style.color = '#27ae60';
+        contactForm.reset();
+        setTimeout(() => {
+          btn.textContent = originalBtnText;
+          btn.disabled = false;
+          note.textContent = originalNote;
+          note.style.color = '';
+        }, 4000);
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      btn.textContent = originalBtnText;
+      btn.disabled = false;
+      note.textContent = '✗ Failed to send. Try emailing directly.';
+      note.style.color = '#c0392b';
+    }
+  });
+}
     </script>
   </body>
 </html>
