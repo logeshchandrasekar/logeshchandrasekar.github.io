@@ -453,10 +453,10 @@
 
       /* ─── Projects ───────────────────────────────────────────── */
       .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--space-5);
-        margin-top: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      margin-top: var(--space-6);
       }
       .project-card {
         border-radius: var(--radius-lg);
@@ -540,6 +540,55 @@
         flex-shrink: 0;
         opacity: 0.6;
       }
+
+      /* ─── Certifications ─────────────────────────────────── */
+      .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: var(--space-5);
+        margin-top: var(--space-6);
+      }
+      .cert-card {
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--silver);
+        background: var(--color-surface);
+        box-shadow: var(--shadow-card);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform var(--transition-med), box-shadow var(--transition-med);
+      }
+      .cert-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 2px 0 var(--silver-hi), 0 12px 40px rgba(0,0,0,0.18);
+      }
+      .cert-thumb {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border-bottom: 1px solid var(--silver);
+        background: var(--color-bg-alt);
+      }
+      .cert-body {
+        padding: var(--space-4) var(--space-5);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        flex: 1;
+      }
+      .cert-title {
+        margin: 0;
+        font-size: var(--text-md);
+        letter-spacing: -0.02em;
+      }
+      .cert-meta {
+        margin: 0;
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-text-soft);
+      }
+      .cert-verify { margin-top: auto; align-self: flex-start; }
 
       /* ─── Education ──────────────────────────────────────────── */
       .education-two-col {
@@ -824,6 +873,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#education">Education</a></li>
+            <li><a href="#certifications">Certifications</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
@@ -1044,6 +1094,11 @@
                     <span class="icon-fallback" style="display:none">Do</span>
                     Docker
                   </div>
+                  <div class="skill-pill">
+                    <img src="https://cdn.simpleicons.org/n8n" alt="n8n" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                    <span class="icon-fallback" style="display:none">n8n</span>
+                    n8n
+                  </div>
                 </div>
               </div>
             </div>
@@ -1155,6 +1210,46 @@
                 </div>
               </article>
 
+              <!-- Project 4: pymethodbook -->
+              <article class="project-card">
+                <header class="project-header">
+                  <h3>pymethodbook</h3>
+                  <p class="project-type">Python Library / Open Source · Published on PyPI</p>
+                </header>
+                <p class="project-description">
+                  A reusable Python utility library published to PyPI, installable via <code>pip install pymethodbook</code>. Built to package common, repeatedly-needed functions into a single importable toolkit.
+                </p>
+                <dl class="project-meta">
+                  <div><dt>Role</dt><dd>Author &amp; Maintainer — packaging, docs, and PyPI release</dd></div>
+                  <div><dt>Tech Stack</dt><dd>Python, setuptools/PyPI packaging</dd></div>
+                </dl>
+                <div class="project-links">
+                  <a href="https://pypi.org/project/pymethodbook/" class="project-link-box">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    PyPI Package
+                  </a>
+                  <a href="https://github.com/logeshchandrasekar/pymethodbook" class="project-link-box">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    Code Repository
+                  </a>
+                </div>
+              </article>
+
+              <!-- Project 5: n8n Job Hunt Command Center -->
+              <article class="project-card">
+                <header class="project-header">
+                  <h3>Job Hunt Command Center</h3>
+                  <p class="project-type">Workflow Automation / AI Agent · Built with n8n</p>
+                </header>
+                <p class="project-description">
+                  A self-hosted n8n automation that runs my job search on autopilot: a recruiter-email triage agent (Gmail → AI classification → calendar/tracker sync) paired with a daily AI-generated job-scout digest surfacing new matching roles.
+                </p>
+                <dl class="project-meta">
+                  <div><dt>Role</dt><dd>Designer &amp; Builder — workflow design, AI classification logic, integrations</dd></div>
+                  <div><dt>Tech Stack</dt><dd>n8n (self-hosted), Gmail API, AI/LLM node, Google Calendar/Sheets</dd></div>
+                </dl>
+              </article>
+
             </div>
           </div>
         </div>
@@ -1202,6 +1297,118 @@
                   </p>
                 </article>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications -->
+      <section id="certifications" class="section" aria-labelledby="certifications-heading">
+        <div class="container">
+          <div class="section-inner-card">
+            <div class="section-header">
+              <p class="section-kicker">Credentials</p>
+              <h2 id="certifications-heading">Certifications</h2>
+              <p class="section-subtitle">Courses and credentials completed across full stack development, cloud, and AI.</p>
+            </div>
+            <div class="cert-grid">
+      
+              <div class="cert-card">
+                <img class="cert-thumb" src="CERT_IMG_1_GENAI" alt="Career Essentials in Generative AI certificate" />
+                <div class="cert-body">
+                  <h3 class="cert-title">Career Essentials in Generative AI</h3>
+                  <p class="cert-meta">Microsoft &amp; LinkedIn · Sep 2026</p>
+                  <a href="CERT_VERIFY_1_GENAI" class="project-link-box cert-verify">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Verify Credential
+                  </a>
+                </div>
+              </div>
+      
+              <div class="cert-card">
+                <img class="cert-thumb" src="CERT_IMG_2_PYTHON2026" alt="Python Programming 2026 certificate" />
+                <div class="cert-body">
+                  <h3 class="cert-title">Python Programming 2026</h3>
+                  <p class="cert-meta">HCL GUVI · Sep 2026</p>
+                  <a href="CERT_VERIFY_2_PYTHON2026" class="project-link-box cert-verify">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Verify Credential
+                  </a>
+                </div>
+              </div>
+      
+              <div class="cert-card">
+                <img class="cert-thumb" src="CERT_IMG_3_DATACOM" alt="Software Engineering — Datacom certificate" />
+                <div class="cert-body">
+                  <h3 class="cert-title">Software Engineering</h3>
+                  <p class="cert-meta">Datacom (Forage) · Aug 2026</p>
+                  <a href="CERT_VERIFY_3_DATACOM" class="project-link-box cert-verify">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Verify Credential
+                  </a>
+                </div>
+              </div>
+      
+              <div class="cert-card">
+                <img class="cert-thumb" src="CERT_IMG_4_JS" alt="JavaScript Programming certificate" />
+                <div class="cert-body">
+                  <h3 class="cert-title">JavaScript Programming</h3>
+                  <p class="cert-meta">Codecademy · Jul 2026</p>
+                  <a href="CERT_VERIFY_4_JS" class="project-link-box cert-verify">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Verify Credential
+                  </a>
+                </div>
+              </div>
+      
+              <div class="cert-card">
+                <img class="cert-thumb" src="CERT_IMG_5_GITGITHUB" alt="Git & GitHub certificate" />
+                <div class="cert-body">
+                  <h3 class="cert-title">Git &amp; GitHub</h3>
+                  <p class="cert-meta">Codecademy · Jun 2026</p>
+                  <a href="CERT_VERIFY_5_GITGITHUB" class="project-link-box cert-verify">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Verify Credential
+                  </a>
+                </div>
+              </div>
+      
+              <div class="cert-card">
+                <img class="cert-thumb" src="CERT_IMG_6_ORACLE" alt="Oracle Cloud Infrastructure Associate certificate" />
+                <div class="cert-body">
+                  <h3 class="cert-title">Cloud Infrastructure Associate 2025</h3>
+                  <p class="cert-meta">Oracle · Dec 2025</p>
+                  <a href="CERT_VERIFY_6_ORACLE" class="project-link-box cert-verify">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Verify Credential
+                  </a>
+                </div>
+              </div>
+      
+              <div class="cert-card">
+                <img class="cert-thumb" src="CERT_IMG_7_CODEDEX" alt="Python Programming 2025 — Codedex certificate" />
+                <div class="cert-body">
+                  <h3 class="cert-title">Python Programming 2025</h3>
+                  <p class="cert-meta">Codedex · Aug 2025</p>
+                  <a href="CERT_VERIFY_7_CODEDEX" class="project-link-box cert-verify">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Verify Credential
+                  </a>
+                </div>
+              </div>
+      
+              <div class="cert-card">
+                <img class="cert-thumb" src="CERT_IMG_8_IITKGP" alt="Data Science Internship — IIT Kharagpur certificate" />
+                <div class="cert-body">
+                  <h3 class="cert-title">Data Science Internship</h3>
+                  <p class="cert-meta">IIT Kharagpur · Aug 2022</p>
+                  <a href="CERT_VERIFY_8_IITKGP" class="project-link-box cert-verify">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Verify Credential
+                  </a>
+                </div>
+              </div>
+      
             </div>
           </div>
         </div>
